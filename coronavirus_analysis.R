@@ -77,18 +77,17 @@ ui <- dashboardPage(
   	        fluidRow(plotlyOutput('graficoDias', width = '100%')),
   	        fluidRow(sliderInput('daySlider', '', 
   	                 min = 1, max = maxDays, value = maxDays, step = 1,
-  	                 animate = animationOptions(interval = 300, loop = FALSE), width = '70%')), 
-  	        width = 12
+  	                 animate = animationOptions(interval = 300, loop = FALSE), width = '100%')), 
+  	        width = 12, fluidRow('Dados públicos disponibilizados pelo Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE). Saiba mais em: https://github.com/CSSEGISandData/COVID-19')
   	      ),
   	      tabPanel('Com base no tempo', '',
   	        plotlyOutput('graficoDatas', width = '100%'),
   	        sliderInput('dateChoose', '',
   	                    min = startDate, max = endDate, value = endDate,
   	                    timeFormat = '%d/%m/%Y',
-  	                    animate = animationOptions(interval = 300, loop = FALSE)),
-  	        width = 12
+  	                    animate = animationOptions(interval = 300, loop = FALSE), width = '100%'),
+  	        width = 12, fluidRow('Dados públicos disponibilizados pelo Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE). Saiba mais em: https://github.com/CSSEGISandData/COVID-19')
   	      ),
-  	      fluidRow('Dados públicos disponibilizados pelo Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE). Saiba mais em: https://github.com/CSSEGISandData/COVID-19'),
 	    width = 12)
 	    )
 		
