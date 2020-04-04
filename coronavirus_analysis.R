@@ -67,7 +67,10 @@ ui <- dashboardPage(
 	      valueBoxOutput('mortality',  width = 3)
 	    ),
 	    fluidRow(
-	      selectizeInput('paises', 'Selecione os países que deseja consultar:', dadosCasos[, sort(unique(countryOrRegion))], selected = 'Brazil', multiple = TRUE)
+	      selectizeInput('paises', 'Selecione os países que deseja consultar:',
+	      dadosCasos[, sort(unique(countryOrRegion))],
+	      selected = 'Brazil', multiple = TRUE,
+	      width = '100%'),style = "margin-left:0px;margin-right:0px"
 	    ),
 	    fluidRow(
 	      tabBox(
