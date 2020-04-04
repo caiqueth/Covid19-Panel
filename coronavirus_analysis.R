@@ -61,12 +61,10 @@ ui <- dashboardPage(
     tabItems(
 	  tabItem(tabName = 'historico',
 	    fluidRow(
-	      valueBoxOutput('totalCases', width = 6),
-	      valueBoxOutput('deaths',     width = 6)
-	    ),
-	    fluidRow(
-	      valueBoxOutput('recovered',  width = 6),
-	      valueBoxOutput('mortality',  width = 6)
+	      valueBoxOutput('totalCases', width = 3),
+	      valueBoxOutput('deaths',     width = 3),
+	      valueBoxOutput('recovered',  width = 3),
+	      valueBoxOutput('mortality',  width = 3)
 	    ),
 	    fluidRow(
 	      selectizeInput('paises', 'Selecione os países que deseja consultar:', dadosCasos[, sort(unique(countryOrRegion))], selected = 'Brazil', multiple = TRUE)
@@ -214,22 +212,22 @@ server <- function(input, output) {
   output$totalCases <- renderValueBox({
     dadosCasos <- dadosCasos[countryOrRegion %chin% input$paises, .SD[.N], by = countryOrRegion]
     valor <- dadosCasos[, sum(totalConfirmedCases)]
-    valueBox(valor, 'Casos confirmados', icon = icon("stats", lib = "glyphicon"))
+    valueBox(format(valor, big.mark = '.', decimal.mark = ','), 'Casos confirmados', icon = icon("stats", lib = "glyphicon"))
   })
   output$deaths <- renderValueBox({
     dadosCasos <- dadosCasos[countryOrRegion %chin% input$paises, .SD[.N], by = countryOrRegion]
     valor <- dadosCasos[, sum(totalConfirmedDeaths)]
-    valueBox(valor, 'Óbitos', icon = icon("exclamation-sign", lib = "glyphicon"))
+    valueBox(format(valor, big.mark = '.', decimal.mark = ','), 'Óbitos', icon = icon("exclamation-sign", lib = "glyphicon"))
   })
   output$recovered <- renderValueBox({
     dadosCasos <- dadosCasos[countryOrRegion %chin% input$paises, .SD[.N], by = countryOrRegion]
     valor <- dadosCasos[, sum(totalConfirmedRecovered)]
-    valueBox(valor, 'Recuperados', icon = icon("heart"))
+    valueBox(format(valor, big.mark = '.', decimal.mark = ','), 'Recuperados', icon = icon("heart"))
   })
   output$mortality <- renderValueBox({
     dadosCasos <- dadosCasos[countryOrRegion %chin% input$paises, .SD[.N], by = countryOrRegion]
     valor <- dadosCasos[, sum(totalConfirmedDeaths) / sum(totalConfirmedCases)]
-    valueBox(paste0(sprintf('%0.2f', valor * 100), '%'), 'Taxa de mortalidade', icon = icon("plus-sign", lib = "glyphicon"))
+    valueBox(paste0(format(round(valor * 100, 2), big.mark = '.', decimal.mark = ','), '%'), 'Fatalidade', icon = icon("plus-sign", lib = "glyphicon"))
   })
   
 }
