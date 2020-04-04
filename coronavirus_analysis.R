@@ -88,9 +88,10 @@ ui <- dashboardPage(
   	                    animate = animationOptions(interval = 300, loop = FALSE)),
   	        width = 12
   	      ),
+  	      fluidRow('Dados públicos disponibilizados pelo Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE). Saiba mais em: https://github.com/CSSEGISandData/COVID-19'),
 	    width = 12)
-	    ),
-		fluidRow('Dados abertos, disponibilizados pelo Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)')
+	    )
+		
 		),
 	    # fluidRow(
 	    #   box(tableOutput('tabela'), width = 12, height = 400)
@@ -103,8 +104,9 @@ ui <- dashboardPage(
 	                    min = startDate, max = endDate, value = Sys.Date(),
 	                    timeFormat = '%d/%m/%Y',
 	                    animate = animationOptions(interval = 150, loop = TRUE)),
+	        fluidRow('Dados públicos disponibilizados pelo Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE). Saiba mais em: https://github.com/CSSEGISandData/COVID-19'),
 	        width = 12),
-			fluidRow('Dados abertos, disponibilizados pelo Johns Hopkins University Center for Systems Science and Engineering (JHU CSSE)'),
+			
         ),
 	  )
 	)
