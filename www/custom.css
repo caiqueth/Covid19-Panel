@@ -15,7 +15,9 @@ body {
     font-weight: bold;
     font-size: 24px;
 }
-
+.selectize-control.multi .selectize-input > div {
+    background:none;
+}
 .skin-blue .main-header .navbar  {
     background-color: #ecf0f3
 }
